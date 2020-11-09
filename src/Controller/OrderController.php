@@ -30,7 +30,7 @@ class OrderController extends AbstractController
                 'page' => $page,
                 'limit' => $limit,
                 'data' => array_map(function($item){
-                    return $this->generateUrl('order_by_company_name',['company_name' => $item->getCompanyName()]); // degişcek
+                    return $this->generateUrl('order_by_company_name',['company_name' => $item->getCompanyName()]);
                 }, $items)
             ]
             
@@ -46,7 +46,7 @@ class OrderController extends AbstractController
     }
     /**
      * @Route("/post/{company_name}", name="order_by_company_name", methods={"GET"})
-     * @ParamConverter("post", class="App:OrderPost", options={"mapping":{"company_name":"company_name"}})
+     * @ParamConverter("post", class="App:OrderPost", options={"mapping":{"company_name":"companyName"}})
      */
     public function postByCompany($post)
     {   
