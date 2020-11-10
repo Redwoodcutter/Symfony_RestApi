@@ -3,14 +3,14 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\OrderPostRepository;
+use App\Repository\OrdersRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=OrderPostRepository::class)
  * @ApiResource()
+ * @ORM\Entity(repositoryClass=OrdersRepository::class)
  */
-class OrderPost
+class Orders
 {
     /**
      * @ORM\Id
@@ -22,12 +22,12 @@ class OrderPost
     /**
      * @ORM\Column(type="integer")
      */
-    private $orderCode;
+    private $OrderCode;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $productId;
+    private $ProductId;
 
     /**
      * @ORM\Column(type="integer")
@@ -42,18 +42,13 @@ class OrderPost
     /**
      * @ORM\Column(type="datetime")
      */
-    private $shippingDate;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $companyId;
+    private $ShippingDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="CompanyName")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $companyName;
+    private $CompanyName;
 
     public function getId(): ?int
     {
@@ -62,24 +57,24 @@ class OrderPost
 
     public function getOrderCode(): ?int
     {
-        return $this->orderCode;
+        return $this->OrderCode;
     }
 
-    public function setOrderCode(int $orderCode): self
+    public function setOrderCode(int $OrderCode): self
     {
-        $this->orderCode = $orderCode;
+        $this->OrderCode = $OrderCode;
 
         return $this;
     }
 
     public function getProductId(): ?int
     {
-        return $this->productId;
+        return $this->ProductId;
     }
 
-    public function setProductId(int $productId): self
+    public function setProductId(int $ProductId): self
     {
-        $this->productId = $productId;
+        $this->ProductId = $ProductId;
 
         return $this;
     }
@@ -110,28 +105,16 @@ class OrderPost
 
     public function getShippingDate(): ?\DateTimeInterface
     {
-        return $this->shippingDate;
+        return $this->ShippingDate;
     }
 
-    public function setShippingDate(\DateTimeInterface $shippingDate): self
+    public function setShippingDate(\DateTimeInterface $ShippingDate): self
     {
-        $this->shippingDate = $shippingDate;
+        $this->ShippingDate = $ShippingDate;
 
         return $this;
     }
-
-    public function getCompanyId(): ?int
-    {
-        return $this->companyId;
-    }
-
-    public function setCompanyId(int $companyId): self
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-    /**
+     /**
      * @return User
      */
     public function getCompanyName(): User
