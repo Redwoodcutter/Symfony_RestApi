@@ -8,10 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=OrderPostRepository::class)
- * @ApiResource(
- *      itemOperations={"get"},
- *      collectionOperations={"get"}
- * )
+ * @ApiResource()
  */
 class OrderPost
 {
@@ -53,14 +50,9 @@ class OrderPost
     private $companyId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="CompanyName")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="text")
      */
     private $companyName;
-     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="orderPost")
-     */
-    Private $orders;
 
     public function getId(): ?int
     {
@@ -138,17 +130,13 @@ class OrderPost
 
         return $this;
     }
-    /**
-     * @return User
-     */
-    public function getCompanyName(): User
+
+    public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
-    /**
-     * @param User $companyName
-     */
-    public function setCompanyName(User $companyName): self
+
+    public function setCompanyName(string $companyName): self
     {
         $this->companyName = $companyName;
 
