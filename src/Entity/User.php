@@ -8,7 +8,10 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      itemOperations={"get"},
+ *      collectionOperations={}
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User
@@ -41,13 +44,13 @@ class User
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OrderPost", mappedBy="CompanyName")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderPost", mappedBy="orders")
      */
     private $posts;
      /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="CompanyName")
+     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="orders")
      */
-    Private $Orders;
+    Private $orders;
 
     public function __construct()
     {
@@ -107,18 +110,24 @@ class User
 
         return $this;
     }
-    /**
-     * @return Collection
+     /**
+     * @param Doctrine\Common\Collections\Collection $user
+     * @return $this
      */
-    public function getOrders(): Colletion
+    public function getOrders(Doctrine\Common\Collections\Collection $user): Colletion
     {
         return $this->Orders;
+
+        return $this;
     }
-    /**
-     * @return Collection
+     /**
+     * @param Doctrine\Common\Collections\Collection $user
+     * @return $this
      */
-    public function getPosts(): Collection
+    public function getPosts(Doctrine\Common\Collections\Collection $user): Collection
     {
         return $this->posts;
+
+        return $this;
     }
 }

@@ -8,7 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=OrderPostRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *      itemOperations={"get"},
+ *      collectionOperations={"get"}
+ * )
  */
 class OrderPost
 {
@@ -54,6 +57,10 @@ class OrderPost
      * @ORM\JoinColumn(nullable=false)
      */
     private $companyName;
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="orderPost")
+     */
+    Private $orders;
 
     public function getId(): ?int
     {

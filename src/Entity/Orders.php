@@ -7,7 +7,10 @@ use App\Repository\OrdersRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      itemOperations={"get"},
+ *      collectionOperations={"get"}
+ * )
  * @ORM\Entity(repositoryClass=OrdersRepository::class)
  */
 class Orders
@@ -45,10 +48,14 @@ class Orders
     private $ShippingDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="CompanyName")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="orders")
      * @ORM\JoinColumn(nullable=false)
      */
     private $CompanyName;
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="orders")
+     */
+    Private $orders;
 
     public function getId(): ?int
     {

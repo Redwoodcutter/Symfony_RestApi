@@ -45,8 +45,8 @@ class OrderController extends AbstractController
         return $this->json($post);
     }
     /**
-     * @Route("/post/{company_name}", name="order_by_company_name", methods={"GET"})
-     * @ParamConverter("post", class="App:OrderPost", options={"mapping":{"company_name":"companyName"}})
+     * @Route("/post/{company_id}", name="order_by_company_name", methods={"GET"})
+     * @ParamConverter("post", class="App:OrderPost", options={"mapping":{"company_name":"companyId"}})
      */
     public function postByCompany($post)
     {   
