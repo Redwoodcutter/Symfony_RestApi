@@ -10,7 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource(
  *      itemOperations={"get"},
- *      collectionOperations={}
+ *      collectionOperations={},
+ *      normalizationContext={
+ *          "groups"={"read"}
+ * }
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
@@ -20,6 +23,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     private $id;
 
@@ -30,11 +34,13 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $Cname;
 
@@ -45,10 +51,12 @@ class User
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\OrderPost", mappedBy="CompanyName")
+     * @Groups({"read"})
      */
     private $posts;
      /**
      * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="CompanyName")
+     * @Groups({"read"})
      */
     Private $orders;
 
