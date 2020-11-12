@@ -53,7 +53,7 @@ class Orders
      */
     private $CompanyName;
      /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="orders")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="orders")
      */
     Private $orders;
 
@@ -137,4 +137,15 @@ class Orders
 
         return $this;
     }
+    public function setOrders(OrderPost $orderPost): self
+    {
+        $this->orderPost = $orderPost;
+
+        return $this;
+    }
+    public function getOrders(): OrderPost
+    {
+        return $this->orderPost;
+    }
+  
 }

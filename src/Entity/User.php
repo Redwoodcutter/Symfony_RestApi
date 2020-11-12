@@ -44,11 +44,11 @@ class User
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OrderPost", mappedBy="orders")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderPost", mappedBy="CompanyName")
      */
     private $posts;
      /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="orders")
+     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="CompanyName")
      */
     Private $orders;
 

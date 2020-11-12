@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\OrderPostRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -53,7 +54,7 @@ class OrderPost
     private $companyId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="CompanyName")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $companyName;
@@ -61,6 +62,14 @@ class OrderPost
      * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="orderPost")
      */
     Private $orders;
+
+    public function __construct(){
+        $this->orders = new ArrayCollection();
+    }
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
 
     public function getId(): ?int
     {
